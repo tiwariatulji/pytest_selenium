@@ -1,0 +1,85 @@
+                  Part 1: Selenium Basics
+
+Intro to Web Automation
+• Browser interaction basics.
+• Elements and the DOM.
+
+Starting with Selenium
+• Writing the first automation script.
+• Opening and closing a browser window.
+• Basic browser navigation (open URL, back, forward, refresh).
+
+Locating Elements
+• What are web elements?
+• Why do we need locators?
+• Different locator strategies in Selenium:
+○ By.ID
+○ By.CLASS_NAME
+○ By.TAG_NAME
+○ By.NAME
+○ By.LINK_TEXT
+○ By.PARTIAL_LINK_TEXT
+○ By.XPATH
+
+What is XPath?
+Absolute XPath vs. Relative XPath
+Writing effective XPath expressions
+XPath functions (contains(), text(), or, and)
+Hands-on example (using SauceDemo URL)
+
+By.CSS_SELECTOR
+• What is a CSS Selector?
+• Basic CSS Selector syntax
+• CSS Selectors vs. XPath
+• Hands-on example (using SauceDemo URL)
+○ Practice Using URL https://www.saucedemo.com/
+
+Locating Multiple Elements
+• Difference between find_element vs. find_elements
+• Iterating over multiple elements
+• Extracting text and attributes
+• Hands-on example (Finding all product names in SauceDemo)
+
+Summary of the Flow in Selenium 4
+[1] Test Script → Sends command to WebDriver
+[2] WebDriver → Directly communicates with the Browser Driver using W3C WebDriver Protocol (No JSON Wire Protocol)
+[3] Browser Driver → Receives the command and sends it to the Browser
+[4] Browser → Executes the action (e.g., click, navigate) and sends a response back Browser Driver
+[5] Browser Driver → WebDriver → Test Script receives the response
+----------------------------------------------------
+Here's the text content from the image:
+➢ What is Web Automation?
+➢ What is the DOM?
+DOM = Document Object Model.
+DOM is basically that map or blueprint of the webpage. It's like a tree made up of all the elements on the page, where each element (text, image, button) is a node on that tree.
+
+➢ Selenium's Main Functions:
+• Browser control.
+• Element interaction (click, type, etc.).
+• Extracting data (scraping).
+• Test automation (verifying website behavior).
+
+-------------
+What is WebDriver
+In Selenium, the WebDriver class is like the driver of your web browser – it helps control the browser and perform all the actions you want to automate, like navigating to a website, clicking buttons, typing text, and much more.
+You create a WebDriver object (e.g., webdriver.Chrome()) to interact with the browser.
+You can perform actions like opening URLs (get()), finding elements (find_element_by_*()), and closing the browser (quit()).
+
+Navigating the Browser By Webdriver Method
+get(url): Opens a URL in the browser.
+back(): Goes back to the previous page in the browser.
+forward(): Moves forward to the next page (if any).
+refresh(): Refreshes the current page.
+
+Interacting with Elements:
+find_element_by_id(id): Finds an element by its ID.
+find_element_by_name(name): Finds an element by its name.
+find_element_by_xpath(xpath): Finds an element using an XPath query.
+find_element_by_class_name(class_name): Finds an element by its class name.
+
+Browser Management:
+maximize_window(): Maximizes the browser window.
+minimize_window(): Minimizes the browser window.
+Quit the Browser:
+
+quit(): Closes the browser and ends the WebDriver session.
