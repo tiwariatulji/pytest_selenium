@@ -7,8 +7,25 @@
 # 14. MoveToElement  ContextClick  ActionChains  KeyDown  KeyUp
 
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 import time
 
 driver = webdriver.Chrome()
+# Maximize the browser window
+driver.maximize_window()
 driver.get("https://www.saucedemo.com/")
 time.sleep(2)
+
+# Locate your username web element
+username = driver.find_element(By.ID, value="user-name")
+# Enter your username
+username.send_keys("standard_user")
+time.sleep(2)
+# Locate your password web element
+password = driver.find_element(By.ID, value="password")
+password.send_keys("secret_sauce")
+time.sleep(2)
+
+
+
+driver.quit()
