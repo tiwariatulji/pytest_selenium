@@ -1,4 +1,6 @@
 # Locators for Selenium 4
+# always use unique locators to identify web elements.
+# Locators are used to find elements on a web page. Selenium supports various types of locators.
 # 1. ID   2. Name  3. ClassName  4. TagName  5. LinkText  6. PartialLinkText
 # 7. CSSSelector  8. XPath    9. DOM  10. JavaScript
 # 11. By method (जैसे "name", "id", "xpath" आदि)
@@ -10,7 +12,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
 
-driver = webdriver.Chrome()
+driver = webdriver.Edge()
 # Maximize the browser window
 driver.maximize_window()
 driver.get("https://www.saucedemo.com/")
