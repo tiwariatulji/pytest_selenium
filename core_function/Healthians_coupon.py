@@ -192,33 +192,6 @@ end_year = (today + timedelta(days=10)).year
 # Simple example assumes same month
 end_xpath = f"//td[not(contains(@class,'ui-datepicker-other-month'))]/a[text()='{end_day}']"
 wait.until(EC.element_to_be_clickable((By.XPATH, end_xpath))).click()
-time.sleep(5)
-
-# ---- Fixed or Percentage ----
-fixed_or_percentage = driver.find_element(By.NAME, "discount_type")
-fixed_or_percentage.click()
-time.sleep(1)
-
-# selct Slab
-slab = driver.find_element(By.NAME, "slab")
-slab.click()
-
-# Discount Amount
-discount_amount = driver.find_element(By.ID, value="discount_amount")
-discount_amount.send_keys("100")
-
-# Minium Booking of Value
-minumum_booking_value = driver.find_element(By.ID, value="min_booking_value")
-minumum_booking_value.send_keys("500")
-time.sleep(2)
-
-# # check only Selctected Plateform
-# checkboxes = driver.find_element(By.XPATH, value=("//label[normalize-space()='Select All']"))
-
-# Loop through each checkbox and select if it's enabled
-checkboxes = driver.find_elements(By.XPATH, "//input[@type='checkbox' and not(@disabled)]")
-for checkbox in checkboxes:
-    checkbox.click()  
 
 
 
