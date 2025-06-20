@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
@@ -51,5 +52,18 @@ time.sleep(10)
 flipcart_sheet =driver.find_element(By.XPATH, value="//button[@class='mat-focus-indicator schedule-btn mat-button mat-button-base']")
 flipcart_sheet.click()
 time.sleep(2)
-# Optional: close the browser
+
+# uplaid with excelsheet
+upload_file_button = driver.find_element(By.XPATH, value='//button[text()=" Schedule Flight Via Excel "]')
+upload_file_button.click()
+time.sleep(2)
+
+
+# # Upload the file
+# upload_file = driver.find_element(By.XPATH, value="//input[@type='file']")
+# upload_file.send_keys("C:\\Users\\Atul Tiwari\\Downloads\\COD_S")
+# # Optional: close the browser
+
 driver.quit()
+
+
