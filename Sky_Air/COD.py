@@ -48,21 +48,21 @@ New_Del.click()
 time.sleep(10)
 
 
-# Upload Sheet for COD
-flipcart_sheet =driver.find_element(By.XPATH, value="//button[@class='mat-focus-indicator schedule-btn mat-button mat-button-base']")
-flipcart_sheet.click()
-time.sleep(2)
+# # Upload Sheet for COD
+# flipcart_sheet =driver.find_element(By.XPATH, value="//button[@class='mat-focus-indicator schedule-btn mat-button mat-button-base']")
+# flipcart_sheet.click()
+# time.sleep(2)
 
-# uplaid with excelsheet
-upload_file_button = driver.find_element(By.XPATH, value='//button[text()=" Schedule Flight Via Excel "]')
-upload_file_button.click()
-time.sleep(2)
+# # uplaid with excelsheet
+# upload_file_button = driver.find_element(By.XPATH, value='//button[text()=" Schedule Flight Via Excel "]')
+# upload_file_button.click()
+# time.sleep(2)
 
+# # select hub name
+# select_dropdown = driver.find_element(By.XPATH, value="//option[text()=' Flipkart -- Flipkart-00001 ']")
 
-# # Upload the file
-# upload_file = driver.find_element(By.XPATH, value="//input[@type='file']")
-# upload_file.send_keys("C:\\Users\\Atul Tiwari\\Downloads\\COD_S")
-# # Optional: close the browser
+Edit_Hub = driver.find_element(By.XPATH, value="//div[@class='cdk-overlay-backdrop cdk-overlay-transparent-backdrop cdk-overlay-backdrop-showing']")
+Edit_Hub.click()
 
 driver.quit()
 

@@ -22,7 +22,7 @@ try:
     # WebDriverWait(driver, 10).until(EC.title_contains("https://uat.skyeairops.tech/login"))
 
     # Log in
-    driver.find_element(By.ID, "emailId").send_keys("rahulkumar@skyeair.tech")
+    driver.find_element(By.ID, "emailId").send_keys("rahulk\umar@skyeair.tech")
     time.sleep(1)
 
     driver.find_element(By.ID, "floatingPassword").send_keys("Operator17@prod1996")
