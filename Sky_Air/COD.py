@@ -53,16 +53,18 @@ flipcart_sheet =driver.find_element(By.XPATH, value="//button[@class='mat-focus-
 flipcart_sheet.click()
 time.sleep(2)
 
-# uplaid with excelsheet
+# upl with excelsheet
 upload_file_button = driver.find_element(By.XPATH, value='//button[text()=" Schedule Flight Via Excel "]')
 upload_file_button.click()
 time.sleep(2)
 
+# # select hub name
+# select_dropdown = driver.find_element(By.XPATH, value="//option[text()=' Flipkart -- Flipkart-00001 ']")
 
-# # Upload the file
-# upload_file = driver.find_element(By.XPATH, value="//input[@type='file']")
-# upload_file.send_keys("C:\\Users\\Atul Tiwari\\Downloads\\COD_S")
-# # Optional: close the browser
+# driver.execute_script("window.scrollBy({ top: 0, left: 300, behavior: 'smooth' });")
+
+# Edit_Hub = driver.find_element(By.XPATH, value="//div[@class='cdk-overlay-backdrop cdk-overlay-transparent-backdrop cdk-overlay-backdrop-showing']")
+# Edit_Hub.click()
 
 driver.quit()
 
