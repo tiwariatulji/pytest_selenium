@@ -30,7 +30,7 @@ print(" Page loaded successfully.")
 # wait = WebDriverWait(driver, 10)
 # delivery_today = wait.until(EC.presence_of_element_located((By.XPATH, "//span[@class='delivery-text']")))
 # delivery_today.click()
-# time.sleep(2)
+# time.sleep(5)
 # # print(driver.page_source)  // Print the page source to verify navigation
 # print(" Delivery with Us Today clicked.")
 
@@ -39,37 +39,37 @@ print(" Page loaded successfully.")
 # contact_us = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@id ='«r0»']")))
 # contact_us.send_keys("Atul")
 # print(" Contact Us field filled with 'Atul'.")
-# time.sleep(1)
+# time.sleep(5)
 
 # # Last Name Field
 # last_name = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@id ='«r1»']")))
 # last_name.send_keys("Tiwari")
 # print(" Last Name field filled with 'Tiwari'.")
-# time.sleep(1)
+# time.sleep(2)
 
 # # Email Field
 # email = driver.find_element(By.XPATH, "//input[@id ='«r2»']")
 # email.send_keys("atul.tiwari@skyeair.tech")
 # print(" Email field filled with 'atul.tiwari@skyeair.tech'.")
-# time.sleep(1)
+# time.sleep(2)
 
 # # / mobile Number Field
 # mobile_number = driver.find_element(By.XPATH, "//input[@id ='«r3»']")
 # mobile_number.send_keys("1234567890")
 # print(" Mobile Number field filled with '1234567890'.")
-# time.sleep(1)
+# time.sleep(2)
 
 # # Message Field
 # message = driver.find_element(By.NAME, "Message")
 # message.send_keys("I want to schedule a flight for my Pacakge.")
 # print("Message field filled with 'I want to schedule a flight for my Package.'.")  
-# time.sleep(1)
+# time.sleep(2)
 
 # # Submit Button
 # submit_button = driver.find_element(By.XPATH, "//button[normalize-space()='Submit']")  
 # submit_button.click()
 # print("Submit button clicked.")
-# time.sleep(1)
+# time.sleep(5)
 
 
 
@@ -81,8 +81,9 @@ print(" Page loaded successfully.")
 # except Exception as e:
 #     print("No popup found or failed to close:", e)
 
-# Scroll down the page to load more content
+# ----------
 
+# Scroll to the bottom of the page to ensure all elements are loaded
 scroll_pause_time = 1  # seconds
 
 # Get the total scroll height
@@ -98,22 +99,204 @@ while True:
 
     if new_height >= last_height:
         break
+
+
+# print(" Scroll completed.")
+
 FAQ = driver.find_element(By.XPATH, '//span[text()="What is Skye Air and how does drone delivery work?"]')
 driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", FAQ)
 time.sleep(1)
 driver.execute_script("arguments[0].click();", FAQ)
 print("FAQ button clicked.")
-time.sleep(5)
+time.sleep(1)
 
 # FAQ 2 Answer
 FAQ2 = driver.find_element(By.XPATH, '//span[text()="Which areas or cities in India does Skye Air currently operate in?"]')
 FAQ2.click()
 print("FAQ 2 button clicked.")
-time.sleep(2)
+
 # FAQ 3 Answer
 FAQ3 = driver.find_element(By.XPATH, '//span[text()="What types of goods can be delivered using Skye Air drones?"]')
 FAQ3.click()
 print("FAQ 3 button clicked.")
-time.sleep(2)
-# driver.quit()  # Close the browser after completion
-# print("Browser closed.")
+time.sleep(3)
+
+# faq_spans = driver.find_elements(By.XPATH, '//span[text()="How is drone delivery different from traditional logistics services?"]')
+# for span in faq_spans:
+#     print(repr(span.text))
+
+# Prtint the page source after clicking FAQ 3
+# with open("page_after_faq3.html", "w", encoding="utf-8") as f:
+#     f.write(driver.page_source)
+
+
+# # // Extracting all FAQ texts
+# faq_spans = driver.find_elements(By.XPATH, '//span[contains(@class, "MuiTypography-root")]')
+# print("FAQ Texts Found:")
+# for i, span in enumerate(faq_spans):
+#     print(f"{i+1}. {repr(span.text)}")
+
+
+# // Contact Us Page 
+contact_us_button = driver.find_element(By.XPATH, "//a[text()='About Us']")
+contact_us_button.click()
+print("Contact Us button clicked.")
+time.sleep(3)
+# # Dilevery with Us Toady on the Home Page
+# wait = WebDriverWait(driver, 10)
+# delivery_today = wait.until(EC.presence_of_element_located((By.XPATH, "//span[@class='delivery-text']")))
+# delivery_today.click()
+# time.sleep(5)
+# # print(driver.page_source)  // Print the page source to verify navigation
+# print(" Delivery with Us Today clicked.")
+
+# # Delivery with us contct page
+# wait = WebDriverWait(driver, 10)
+# contact_us = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@id ='«r0»']")))
+# contact_us.send_keys("Atul")
+# print(" Contact Us field filled with 'Atul'.")
+# time.sleep(5)
+
+# # Last Name Field
+# last_name = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@id ='«r1»']")))
+# last_name.send_keys("Tiwari")
+# print(" Last Name field filled with 'Tiwari'.")
+# time.sleep(2)
+
+# # Email Field
+# email = driver.find_element(By.XPATH, "//input[@id ='«r2»']")
+# email.send_keys("atul.tiwari@skyeair.tech")
+# print(" Email field filled with 'atul.tiwari@skyeair.tech'.")
+# time.sleep(2)
+
+# # / mobile Number Field
+# mobile_number = driver.find_element(By.XPATH, "//input[@id ='«r3»']")
+# mobile_number.send_keys("1234567890")
+# print(" Mobile Number field filled with '1234567890'.")
+# time.sleep(2)
+
+# # Message Field
+# message = driver.find_element(By.NAME, "Message")
+# message.send_keys("I want to schedule a flight for my Pacakge.")
+# print("Message field filled with 'I want to schedule a flight for my Package.'.")  
+# time.sleep(2)
+
+# # Submit Button
+# submit_button = driver.find_element(By.XPATH, "//button[normalize-space()='Submit']")  
+# submit_button.click()
+# print("Submit button clicked.")
+# time.sleep(5)
+
+# # close the Popup
+# try:
+#     close_popup = driver.find_element(By.XPATH, "//button[@class='close-btn']")
+#     close_popup.click()
+#     print("Popup closed successfully.")
+# except Exception as e:
+#     print("No popup found or failed to close:", e)
+
+
+
+
+scroll_pause_time = 1  # seconds
+# Get the total scroll height
+last_height = driver.execute_script("return document.body.scrollHeight")
+
+while True:
+    # Scroll down by window height
+    driver.execute_script("window.scrollBy(0, window.innerHeight);")
+    time.sleep(scroll_pause_time)
+
+    # Calculate new scroll height
+    new_height = driver.execute_script("return window.pageYOffset + window.innerHeight")
+
+    if new_height >= last_height:
+        break
+
+
+
+# read_more_articles = driver.find_element(By.XPATH, "(//button[contains(@class, 'read-more-btn')])[1]")
+# driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", read_more_articles)
+# time.sleep(1)
+# driver.execute_script("arguments[0].click();", read_more_articles)
+# print("FAQ button clicked.")
+# time.sleep(3)
+
+# # read_more_articles_2 = driver.find_element(By.XPATH, "(//button[contains(@class, 'read-more-btn')])[2]")
+# # read_more_articles_2.click()
+# # print("Read More Articles button clicked.")
+# # time.sleep(3)
+
+
+
+# driver.get("https://www.skyeair.tech/about")  # Replace with your site
+
+# Store parent window
+parent_window = driver.current_window_handle
+
+# Wait until all buttons are present
+read_more_buttons = WebDriverWait(driver, 10).until(
+    EC.presence_of_all_elements_located((By.XPATH, "//button[contains(@class, 'read-more-btn')]"))
+)
+
+# Get XPaths or indexes since list gets stale after tab switch
+button_xpaths = [f"(//button[contains(@class, 'read-more-btn')])[{i+1}]" for i in range(len(read_more_buttons))]
+
+# Loop through each button
+for xpath in button_xpaths:
+    # Scroll and click using JS (to avoid hidden issues)
+    button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, xpath)))
+    driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", button)
+    time.sleep(1)
+    driver.execute_script("arguments[0].click();", button)
+
+    # Wait for new window to appear
+    WebDriverWait(driver, 10).until(lambda d: len(d.window_handles) > 1)
+    all_windows = driver.window_handles
+
+    # Switch to new window
+    for handle in all_windows:
+        if handle != parent_window:
+            driver.switch_to.window(handle)
+            break
+
+    print("Switched to new window:", driver.title)
+    time.sleep(2)  # Optional: do something
+
+    # Close child window and return to parent
+    driver.close()
+    driver.switch_to.window(parent_window)
+    print("Returned to parent window\n")
+
+# Done
+print("All links processed successfully.")
+time.sleep(5)
+
+# //clck on Gallery
+WebDriverWait(driver, 10).until(
+    EC.presence_of_element_located((By.CLASS_NAME, "swiper"))
+)
+
+# Try to click the next arrow
+for i in range(3):  # Click 3 times
+    try:
+        next_arrow = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, '//button[contains(@aria-label, "Next")]'))
+        )
+        next_arrow.click()
+        time.sleep(1.5)
+    except Exception as e:
+        print(f"Error on iteration {i+1}: {e}")
+
+
+
+
+
+
+
+
+
+
+
+driver.quit()  # Close the browser after completion
+print("Browser closed.")
