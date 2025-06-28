@@ -98,6 +98,47 @@ else:
     print(" Form submitted successfully.")
     print(" Test Passed!")
 
+try:
+    close_popup = driver.find_element(By.XPATH, "//button[@class='close-btn']")
+    close_popup.click()
+    print("Popup closed successfully.")
+except Exception as e:
+    print("No popup found or failed to close:", e)    
+
+scroll_pause_time = 1  # seconds
+
+# Get the total scroll height
+last_height = driver.execute_script("return document.body.scrollHeight")
+
+while True:
+    # Scroll down by window height
+    driver.execute_script("window.scrollBy(0, window.innerHeight);")
+    time.sleep(scroll_pause_time)
+
+    # Calculate new scroll height
+    new_height = driver.execute_script("return window.pageYOffset + window.innerHeight")
+
+    if new_height >= last_height:
+        break
+FAQ = driver.find_element(By.XPATH, '//span[text()="What is Skye Air and how does drone delivery work?"]')
+driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", FAQ)
+time.sleep(1)
+driver.execute_script("arguments[0].click();", FAQ)
+print("FAQ button clicked.")
+time.sleep(5)
+
+# FAQ 2 Answer
+FAQ2 = driver.find_element(By.XPATH, '//span[text()="Which areas or cities in India does Skye Air currently operate in?"]')
+FAQ2.click()
+print("FAQ 2 button clicked.")
+time.sleep(2)
+# FAQ 3 Answer
+FAQ3 = driver.find_element(By.XPATH, '//span[text()="What types of goods can be delivered using Skye Air drones?"]')
+FAQ3.click()
+print("FAQ 3 button clicked.")
+time.sleep(2)
+
+
 time.sleep(5)
 driver.quit()
 # Close the browser
