@@ -17,7 +17,7 @@ chrome_options.add_experimental_option("prefs", prefs)
 driver = webdriver.Chrome(options=chrome_options)
 driver.maximize_window()
 # Open the target URL
-driver.get("https://www.skyeair.tech/")
+driver.get("https://uat.skyeair.tech/home")
 # // print the page title
 print("Page Title:", driver.title)
 assert "Sky" in driver.title or "Air" in driver.title  # Adjust based on
@@ -121,6 +121,54 @@ FAQ3.click()
 print("FAQ 3 button clicked.")
 time.sleep(3)
 
+
+faq4_xpath = '//span[text()="How is drone delivery different from traditional logistics services?"]'
+faq4_answer_xpath = '//p[contains(text(), "Drone delivery is faster")]'
+
+# Click FAQ 4
+try:
+    faq4 = wait.until(EC.element_to_be_clickable((By.XPATH, faq4_xpath)))
+    driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", faq4)
+    time.sleep(1)
+    faq4.click()
+    print("FAQ Button 4 clicked.")
+    time.sleep(2)
+except Exception as e:
+    print("Failed to click FAQ 4:", e)
+
+# Get FAQ 4 Answer
+try:
+    faq4_answer = wait.until(EC.visibility_of_element_located((By.XPATH, faq4_answer_xpath)))
+    print("FAQ 4 Answer:")
+    print(faq4_answer.text)
+except Exception as e:
+    print("Could not find FAQ 4 Answer:", e)
+
+# XPath for the FAQ question and answer
+faq_question_xpath_2 = '//span[contains(text(), "Is drone delivery safe and approved by Indian aviation authorities?")]'
+faq_answer_xpath_2   = '//p[contains(text(), "Yes, we operate under DGCA guidelines")]'
+
+# Click on the FAQ question to reveal the answer
+try:
+    faq_question_2 = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.XPATH, faq_question_xpath_2))
+    )
+    driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", faq_question_2)
+    time.sleep(1)
+    faq_question_2.click()
+    print("Clicked FAQ: Is drone delivery safe and approved by Indian aviation authorities?")
+    time.sleep(2)
+
+    # Extract and print the answer
+    faq_answer_2 = WebDriverWait(driver, 10).until(
+        EC.visibility_of_element_located((By.XPATH, faq_answer_xpath_2))
+    )
+    print("Answer:")
+    print(faq_answer_2.text)
+
+except Exception as e:
+    print("Failed to process the safety FAQ:", e)
+
 # faq_spans = driver.find_elements(By.XPATH, '//span[text()="How is drone delivery different from traditional logistics services?"]')
 # for span in faq_spans:
 #     print(repr(span.text))
@@ -137,7 +185,7 @@ time.sleep(3)
 #     print(f"{i+1}. {repr(span.text)}")
 
 
-# // Contact Us Page 
+# // About Us Page
 contact_us_button = driver.find_element(By.XPATH, "//a[text()='About Us']")
 contact_us_button.click()
 print("Contact Us button clicked.")
@@ -272,22 +320,221 @@ for xpath in button_xpaths:
 print("All links processed successfully.")
 time.sleep(5)
 
-# //clck on Gallery
-WebDriverWait(driver, 10).until(
-    EC.presence_of_element_located((By.CLASS_NAME, "swiper"))
-)
+# # //clck on Gallery
+# WebDriverWait(driver, 10).until(
+#     EC.presence_of_element_located((By.CLASS_NAME, "swiper"))
+# )
 
-# Try to click the next arrow
-for i in range(3):  # Click 3 times
-    try:
-        next_arrow = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.XPATH, '//button[contains(@aria-label, "Next")]'))
-        )
-        next_arrow.click()
-        time.sleep(1.5)
-    except Exception as e:
-        print(f"Error on iteration {i+1}: {e}")
+# # Try to click the next arrow
+# for i in range(3):  # Click 3 times
+#     try:
+#         next_arrow = WebDriverWait(driver, 10).until(
+#             EC.element_to_be_clickable((By.XPATH, '//button[contains(@aria-label, "Next")]'))
+#         )
+#         next_arrow.click()
+#         time.sleep(1.5)
+#     except Exception as e:
+#         print(f"Error on iteration {i+1}: {e}")
 
+        
+# time.sleep(3)  # Wait for the last click to take effect
+
+# Media & Partners 
+media_partners = driver.find_element(By.XPATH, "//a[text()='Media & Partners']")
+media_partners.click()      
+print("Media & Partners button clicked.")
+time.sleep(3)   
+
+# Scroll to the bottom of the page to ensure all elements are loaded
+scroll_pause_time = 1  # seconds        
+# Get the total scroll height
+last_height = driver.execute_script("return document.body.scrollHeight")    
+while True:
+    # Scroll down by window height
+    driver.execute_script("window.scrollBy(0, window.innerHeight);")
+    time.sleep(scroll_pause_time)
+
+    # Calculate new scroll height
+    new_height = driver.execute_script("return window.pageYOffset + window.innerHeight")
+
+    if new_height >= last_height:
+        break
+
+time.sleep(3)  # Wait for the scroll to complete
+
+# Contact Us Page
+
+contact_us_button = driver.find_element(By.XPATH, "//a[text()='Contact Us']")
+contact_us_button.click()       
+print("Contact Us button clicked.")
+time.sleep(3)
+
+# contact Page  Fome on Page
+# contact_us = driver.find_element(By.XPATH, "//input[@id ='«r0»']")
+# contact_us.send_keys("Atul")
+# print("Contact Us field filled with 'Atul'.")
+# time.sleep(2)       
+# # Last Name Field   
+# last_name = driver.find_element(By.XPATH, "//input[@id ='«r1»']")
+# last_name.send_keys("Tiwari")
+# print("Last Name field filled with 'Tiwari'.")
+# time.sleep(2)
+# # Email Field
+# email = driver.find_element(By.XPATH, "//input[@id ='«r2»']")
+# email.send_keys("atul.tiwari@skyeair.tech")
+# print("Email field filled with")
+# # Phone Number Field
+# phone_number = driver.find_element(By.XPATH, "//input[@id ='«r3»']")
+# phone_number.send_keys("1234567890")
+# print("Phone Number field filled with '1234567890'.")   
+# time.sleep(2)
+# # Message Field
+# message = driver.find_element(By.NAME, "Message")
+# message.send_keys("Hello Skye Air.")
+# print("Message field filled with 'Hello Skye Air.'")
+# time.sleep(2)
+# # Submit Button
+# submit_button = driver.find_element(By.XPATH, "//button[normalize-space()='Submit']")
+# submit_button.click()       
+# print("Submit button clicked.")
+# time.sleep(5)
+
+# # close the Popup
+# try:
+#     close_popup = driver.find_element(By.XPATH, "//button[@class='close-btn']")
+#     close_popup.click()
+#     print("Popup closed successfully.")
+# except Exception as e:
+#     print("No popup found or failed to close:", e)
+
+# time.sleep(3)
+
+
+# return to home page
+
+wait = WebDriverWait(driver, 10)
+return_home = driver.find_element(By.XPATH, "//img[@class='header-logo']")
+# Scroll to the element before clicking
+driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", return_home)
+time.sleep(1)
+# Click the element
+return_home.click()
+print("Return Home button clicked.")
+time.sleep(3)
+# // Scroll to the bottom of the page to ensure all elements are loaded
+
+scroll_pause_time = 1  # seconds
+# Get the total scroll height       
+last_height = driver.execute_script("return document.body.scrollHeight")        
+while True:
+    # Scroll down by window height
+    driver.execute_script("window.scrollBy(0, window.innerHeight);")
+    time.sleep(scroll_pause_time)
+
+    # Calculate new scroll height
+    new_height = driver.execute_script("return window.pageYOffset + window.innerHeight")
+
+    if new_height >= last_height:
+        break       
+
+# Scroll to the bottom of the page to ensure all elements are loaded
+# time.sleep(3)  # Wait for the scroll to complete    
+
+# # Find My Location Button
+# find_my_location = driver.find_element(By.XPATH, "//span[text()='Find My Location']")
+# # Scroll to the element before clicking
+# driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", find_my_location)
+# time.sleep(1)   
+# # Click the element
+# find_my_location.click()
+# print("Find My Location button clicked.")   
+# time.sleep(3)  # Wait for the action to complete    
+
+# # Find our Location Button
+# pin_code_input = driver.find_element(By.XPATH, "//input[@id='«r2»']")
+# pin_code_input.send_keys("122001")  # Example pin code
+
+# search_btn = driver.find_element(By.XPATH, "//button[@class='search-btn disabled']")
+# search_btn.click()  # Click the search button
+# print("Pin code '122001' entered.")
+
+# time.sleep(2)
+# # close the Popup
+# try:
+#     close_popup = driver.find_element(By.XPATH, "//button[@class='close-btn']")
+#     close_popup.click()
+#     print("Popup closed successfully.")
+# except Exception as e:
+#     print("No popup found or failed to close:", e)
+
+
+# // Solution Page 
+solution_page = driver.find_element(By.XPATH, "//a[text()='Solutions']")
+solution_page.click()
+print("Solutions button clicked.")
+time.sleep(3)
+
+# // Request a Demo Button
+request_demo_button = driver.find_element(By.XPATH, "(//button[text()='Request a Demo'])[1]")
+# Scroll to the element before clicking
+driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", request_demo_button)
+time.sleep(1)   
+# Click the element
+request_demo_button.click()
+print("Request a Demo button clicked.")
+time.sleep(3) 
+
+// Request a Demo Form
+contact_us = driver.find_element(By.XPATH, "//input[@id ='«r0»']")
+contact_us.send_keys("Atul")
+print("Contact Us field filled with 'Atul'.")
+time.sleep(2)
+# Last Name Field 
+last_name = driver.find_element(By.XPATH, "//input[@id ='«r1»']")
+last_name.send_keys("Tiwari")
+
+print("Last Name field filled with 'Tiwari'.")
+time.sleep(2)
+
+# Email Field
+email = driver.find_element(By.XPATH, "//input[@id ='«r2»']") 
+email.send_keys("atul.tiwari@skyeair.tech")
+print("Email field filled with 'atul.tiwari@skyeair.tech'")
+# Phone Number Field
+phone_number = driver.find_element(By.XPATH, "//input[@id ='«r3»']")
+phone_number.send_keys("1234567890")
+print("Phone Number field filled with '1234567890'.")
+time.sleep(2)
+# Message Field
+message = driver.find_element(By.NAME, "Message")
+message.send_keys("Hello Skye Air.")
+print("Message field filled with 'Hello Skye Air.'")
+time.sleep(2)
+# Submit Button
+submit_button = driver.find_element(By.XPATH, "//button[normalize-space()='Submit']")
+submit_button.click()
+print("Submit button clicked.")
+time.sleep(5)
+# close the Popup
+try:
+    close_popup = driver.find_element(By.XPATH, "//button[@class='close-btn']")
+    close_popup.click()
+    print("Popup closed successfully.")
+except Exception as e:    
+    print("No popup found or failed to close:", e)    
+# back to the Solutions Page
+driver.back()
+
+
+
+
+
+# time.sleep(3)
+
+
+
+
+# Close the browser
 
 
 
