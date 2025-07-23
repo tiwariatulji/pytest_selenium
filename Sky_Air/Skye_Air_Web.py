@@ -1,3 +1,4 @@
+from ast import Await
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -6,6 +7,8 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
+from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.action_chains import ActionChains
 
 # Chrome Options for Allowing Notification
 chrome_options = Options()      
@@ -138,7 +141,7 @@ except Exception as e:
 
 # Get FAQ 4 Answer
 try:
-    faq4_answer = wait.until(EC.visibility_of_element_located((By.XPATH, faq4_answer_xpath)))
+    faq4_answer = Await.until(EC.visibility_of_element_located((By.XPATH, faq4_answer_xpath)))
     print("FAQ 4 Answer:")
     print(faq4_answer.text)
 except Exception as e:
@@ -484,65 +487,131 @@ request_demo_button.click()
 print("Request a Demo button clicked.")
 time.sleep(3) 
 
-# // Request a Demo Form
-contact_us = driver.find_element(By.XPATH, "//input[@id ='«r0»']")
-contact_us.send_keys("Atul")
-print("Contact Us field filled with 'Atul'.")
-time.sleep(2)
-# Last Name Field 
-last_name = driver.find_element(By.XPATH, "//input[@id ='«r1»']")
-last_name.send_keys("Tiwari")
+# # // Request a Demo Form
+# contact_us = driver.find_element(By.XPATH, "//input[@id ='«r0»']")
+# contact_us.send_keys("Atul")
+# print("Contact Us field filled with 'Atul'.")
+# time.sleep(2)
+# # Last Name Field 
+# last_name = driver.find_element(By.XPATH, "//input[@id ='«r1»']")
+# last_name.send_keys("Tiwari")
+# print("Last Name field filled with 'Tiwari'.")
+# time.sleep(2)
 
-print("Last Name field filled with 'Tiwari'.")
-time.sleep(2)
+# #  Organization Field
+# organization = driver.find_element(By.XPATH, "//input[@name ='Company']")
+# organization.send_keys("Skye Air")
+# print("Organization field filled with 'Skye Air'.")
+# time.sleep(1)
 
-# Email Field
-email = driver.find_element(By.XPATH, "//input[@id ='«r2»']") 
-email.send_keys("atul.tiwari@skyeair.tech")
-print("Email field filled with 'atul.tiwari@skyeair.tech'")
-# Phone Number Field
-phone_number = driver.find_element(By.XPATH, "//input[@id ='«r3»']")
-phone_number.send_keys("1234567890")
-print("Phone Number field filled with '1234567890'.")
-time.sleep(2)
-# Message Field
-message = driver.find_element(By.NAME, "Message")
-message.send_keys("Hello Skye Air.")
-print("Message field filled with 'Hello Skye Air.'")
-time.sleep(2)
-# Submit Button
-submit_button = driver.find_element(By.XPATH, "//button[normalize-space()='Submit']")
-submit_button.click()
-print("Submit button clicked.")
+# ## Click to open the Orginazation Role Dropdown
+# Select_Dropdwon = driver.find_element(By.ID, "mui-component-select-Role")
+# Select_Dropdwon.click()
+# print("Role dropdown opened.")
+# wait = WebDriverWait(driver, 10)
+# # Select the option "Project Manager" from the dropdown
+# wait = WebDriverWait(driver, 10).until(
+#     EC.element_to_be_clickable((By.XPATH, "//li[contains(text(), 'Project Manager')]"))
+# ).click()
+# print("Project Manager selected")
+# time.sleep(2)
+
+# # Email Field
+# email = driver.find_element(By.XPATH, "//input[@name ='Email']") 
+# email.send_keys("atul.tiwari@skyeair.tech")
+# print("Email field filled with 'atul.tiwari@skyeair.tech'")
+
+# # Phone Number Field
+# phone_number = driver.find_element(By.XPATH, "//input[@name ='Phone']")
+# phone_number.send_keys("1234567890")
+# print("Phone Number field filled with '1234567890'.")
+# time.sleep(2)
+# # Message Field
+# message = driver.find_element(By.NAME, "Message")
+# message.send_keys("Hello Skye Air.")
+# print("Message field filled with 'Hello Skye Air.'")
+# time.sleep(2)
+# # Submit Button
+# submit_button = driver.find_element(By.XPATH, "//button[normalize-space()='Submit']")
+# driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", submit_button)
+# time.sleep(1)  # allow scroll animation to finish
+# submit_button.click()
+# print("Submit button clicked.")
+# time.sleep(5)
+# # close the Popup
+# try:
+#     close_popup = driver.find_element(By.XPATH, "//button[@class='close-btn']")
+#     close_popup.click()
+#     print("Popup closed successfully.")
+# except Exception as e:    
+#     print("No popup found or failed to close:", e)    
+# # back to the Solutions Page
+# driver.back()
+
+driver.back()  # Go back to the previous page (Solutions Page)
+# Wait for the page to load
 time.sleep(5)
-# close the Popup
-try:
-    close_popup = driver.find_element(By.XPATH, "//button[@class='close-btn']")
-    close_popup.click()
-    print("Popup closed successfully.")
-except Exception as e:    
-    print("No popup found or failed to close:", e)    
-# back to the Solutions Page
-driver.back()
+
+driver.execute_script("window.scrollTo(0, 0);")  # Scroll to the top of the page
 
 
+# # hover the Mouser on Modal
+# hover_Modal_1 = driver.find_element(
+#     By.XPATH,
+#     "//div[contains(@class, 'slick-slide') and contains(@class, 'slick-active') and contains(@class, 'slick-current')]//h6[contains(@class, 'text-left') and contains(@class, 'fw-bold')]"
+# )
+# # Perform the hover
+# actions = ActionChains(driver)
+# actions.move_to_element(hover_Modal_1).perform()
+# time.sleep(5)  # Wait for the hover effect to take place
 
+# Hover the mouse on each modal card and show card info
+modal_cards = driver.find_elements(
+    By.XPATH,
+    "//div[contains(@class, 'slick-slide') and contains(@class, 'slick-active')]//h6[contains(@class, 'text-left') and contains(@class, 'fw-bold')]"
+)
+actions = ActionChains(driver)
+for i, card in enumerate(modal_cards, start=1):
+    try:
+        actions.move_to_element(card).perform()
+        print(f"Hovered over card {i}: {card.text}")
+        time.sleep(2)  # Wait for hover effect
+    except Exception as e:
+        print(f"Could not hover over card {i}: {e}")
 
+# driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", hover_Modal_2)
+# Click the element after scrolling into view
 
-# time.sleep(3)
+# Hover and click on Media & Partners
+media_partners = driver.find_element(By.XPATH, "//a[@href='https://www.facebook.com/OfficialSkyeAirMobility/']//img[@alt='Logo']")
+actions.move_to_element(media_partners).click().perform()
+print("Media & Partners button clicked after hover.")
+time.sleep(3)
+driver.back()  # Go back to the previous page (Solutions Page)
 
+# Instagram 
+instagram_page = driver.find_element(By.XPATH, "//a[@href='https://www.instagram.com/skyeairofficial/']//img[@alt='Logo']")
+actions.move_to_element(instagram_page).click().perform()
+print("Instagram button clicked after hover.")
+time.sleep(3)
+driver.back()  # Go back to the previous page (Solutions Page)
 
+# Twitter
+twitter_page = driver.find_element(By.XPATH, "//a[@href='https://x.com/air_skye']//img[@alt='Logo']")
+actions.move_to_element(twitter_page).click().perform()
+driver.back()  # Go back to the previous page (Solutions Page)
+print("Twitter button clicked after hover.")
+time.sleep(3)
+
+# LinkedIn
+linkedin_page = driver.find_element(By.XPATH, "//a[@href='https://in.linkedin.com/company/skyeairmobility']//img[@alt='Logo']")
+actions.move_to_element(linkedin_page).click().perform()
+print("LinkedIn button clicked after hover.")
+time.sleep(3)
+driver.back()  # Go back to the previous page (Solutions Page)
 
 
 # Close the browser
-
-
-
-
-
-
-
-
 
 
 driver.quit()  # Close the browser after completion

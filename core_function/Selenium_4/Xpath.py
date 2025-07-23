@@ -44,47 +44,53 @@ webdriver.get("https://www.saucedemo.com/") # Step 3: Navigate to the URL
 # webdriver.implicitly_wait(10) # Step 4: Wait for elements to load
 time.sleep(2) # Wait for 2 seconds to see the page load
 
-# Enter your username
-username = webdriver.find_element(By.XPATH, value="//input[@id='user-name']")
-username.send_keys("standard_user")
-time.sleep(2) # Wait for 2 seconds to see the page load
+# # Enter your username
+# username = webdriver.find_element(By.XPATH, value="//input[@id='user-name']")
+# username.send_keys("standard_user")
+# time.sleep(2) # Wait for 2 seconds to see the page load
 
-# Enter your password
-password = webdriver.find_element(By.XPATH, value = "//input[@id='password']")
-password.send_keys("secret_sauce")
-time.sleep(2) # Wait for 2 seconds to see the page load
+# # Enter your password
+# password = webdriver.find_element(By.XPATH, value = "//input[@id='password']")
+# password.send_keys("secret_sauce")
+# time.sleep(2) # Wait for 2 seconds to see the page load
 
-#  Login Button
+# #  Login Button
 
-login_button = webdriver.find_element(By.XPATH, value="//input[@name='login-button']")
-login_button.click()
-time.sleep(2) # Wait for 2 seconds to see the page load
+# login_button = webdriver.find_element(By.XPATH, value="//input[@name='login-button']")
+# login_button.click()
+# time.sleep(2) # Wait for 2 seconds to see the page load
 
-            #  after login add to cart button ( using contains method)
-# contains method is used to find an element whose attribute contains a specific value.
-# Example: //button[contains(@class, 'btn_primary') and contains(text(), 'Add to cart')]
-# add_to_cart_button = webdriver.find_element(By.XPATH, value="//button[contains(@name,'add-to-cart-sauce-labs-backpack')]") 
+#             #  after login add to cart button ( using contains method)
+# # contains method is used to find an element whose attribute contains a specific value.
+# # Example: //button[contains(@class, 'btn_primary') and contains(text(), 'Add to cart')]
+# # add_to_cart_button = webdriver.find_element(By.XPATH, value="//button[contains(@name,'add-to-cart-sauce-labs-backpack')]") 
+# # add_to_cart_button.click()
+
+# wait = WebDriverWait(webdriver, 10)
+# add_to_cart_button = wait.until(EC.presence_of_element_located(
+#     (By.XPATH, "//button[contains(@name,'add-to-cart-sauce-labs-backpack')]")
+# ))
 # add_to_cart_button.click()
 
-wait = WebDriverWait(webdriver, 10)
-add_to_cart_button = wait.until(EC.presence_of_element_located(
-    (By.XPATH, "//button[contains(@name,'add-to-cart-sauce-labs-backpack')]")
-))
-add_to_cart_button.click()
+# # Remove from cart
+# remove_button = wait.until(EC.presence_of_element_located(
+#     (By.XPATH, "//button[contains(@name,'remove-sauce-labs-backpack')]")
+# ))
+# remove_button.click()
+# time.sleep(3)
 
-# Remove from cart
-remove_button = wait.until(EC.presence_of_element_located(
-    (By.XPATH, "//button[contains(@name,'remove-sauce-labs-backpack')]")
-))
-remove_button.click()
-time.sleep(3)
+# # Text method is used to find an element whose text matches a specific value.
+# # Example: //button[text()='Remove']
 
-# Text method is used to find an element whose text matches a specific value.
-# Example: //button[text()='Remove']
+# add_text = webdriver.find_element(By.XPATH, value="//div[text()='Sauce Labs Backpack']")
+# add_text.click()
+# # print(add_text.text) # Print the text of the element
 
-add_text = webdriver.find_element(By.XPATH, value="//div[text()='Sauce Labs Backpack']")
-add_text.click()
-# print(add_text.text) # Print the text of the element
+# Finding duplicate vlaue using x path
+username_duplicate = webdriver.find_element(By.XPATH,value="//input[@id='user-name' and @name='user-name']")
+username_duplicate.send_keys("standard_user")
+time.sleep(2) # Wait for 2 seconds to see the page load
+print("Name is entered successfully")
 
 
 
