@@ -28,12 +28,12 @@ time.sleep(2)
 print(driver.title)
 
 username = driver.find_element(By.ID, value="emailId")
-username.send_keys("rahulkumar@skyeair.tech")
+username.send_keys("atul.tiwari@skyeair.tech")
 time.sleep(2)
 
 # Password field
 password = driver.find_element(By.ID, value="floatingPassword")
-password.send_keys("Operator17@prod1996")
+password.send_keys("Atul@123")
 time.sleep(2)
 
 # Login 
@@ -45,12 +45,14 @@ time.sleep(3)
 
 New_Del = driver.find_element(By.XPATH, value= "//span[text()='COD']")
 New_Del.click()
+print("Clicked on COD")
 time.sleep(10)
 
 
 # Upload Sheet for COD
 flipcart_sheet =driver.find_element(By.XPATH, value="//button[@class='mat-focus-indicator schedule-btn mat-button mat-button-base']")
 flipcart_sheet.click()
+
 time.sleep(2)
 
 # upl with excelsheet
