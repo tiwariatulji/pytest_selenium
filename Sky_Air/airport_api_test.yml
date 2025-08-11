@@ -1,0 +1,35 @@
+config:
+  target: "https://airportgap.com/api"
+  phases:
+    - name: "test"
+      duration: 60
+      arrivalRate: 5
+
+scenarios:
+  name: "Airport API Test"
+  flow:
+    - get:
+        url: "/airports"
+        headers:
+          Accept: "application/json"
+        assertions:
+          - statusCode: 200
+          - json:
+              - "$.airports"
+              - "$.airports[0].name"
+              - "$.airports[0].code"
+              - "$.airports[0].city"
+              - "$.airports[0].country"
+          - json:
+              - "$.airports[0].latitude"
+              - "$.airports[0].longitude"
+              - "$.airports[0].timezone"
+          - json:
+              - "$.airports[0].elevation"
+              - "$.airports[0].icao"
+              - "$.airports[0].iata"
+              - "$.airports[0].type"
+              - "$.airports[0].wikipedia_link"
+              - "$.airports[0].status"
+              - "$.airports[0].runways"
+              - "$.airports[0].runways[0].length"
