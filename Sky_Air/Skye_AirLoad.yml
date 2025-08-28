@@ -1,0 +1,14 @@
+config:
+  target: "https://healthians.com"
+  phases:
+    - name: "test"
+      duration: 30
+      arrivalRate: 2000
+
+scenarios:
+  - name: "Helathians Web site"
+    flow:
+      - get:
+          url: "/healthians"
+          
+  
