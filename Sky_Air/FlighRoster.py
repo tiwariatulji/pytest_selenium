@@ -39,39 +39,23 @@ time.sleep(2)
 # Login 
 Login = driver.find_element(By.XPATH, '//button[@type="submit"]')
 Login.click()
-time.sleep(3)
-
-# COD Flow
-
-New_Del = driver.find_element(By.XPATH, value= "//span[text()='COD']")
-New_Del.click()
-print("Clicked on COD")
 time.sleep(10)
 
-hub_select = driver.find_element(By.XPATH, value="//select[@class='form-select']")
-hub_select.click()
-time.sleep(2)
+# Flight Roster Flow
 
+# Wait for the button to be clickable before clicking
+try:
+    New_Flight = WebDriverWait(driver, 20).until(
+        EC.element_to_be_clickable((By.XPATH, "(//button[@class='mat-focus-indicator schedule-btn mat-button mat-button-base'])[1]"))
+    )
+    New_Flight.click()
+    print("Clicked on Manual Flight Selection")
+    time.sleep(10)
+except Exception as e:
+    print(f"Error finding or clicking the flight button: {e}")
+    print("Page source around the error:")
+    # print(driver.page_source[:2000])  # Print first 2000 chars of page source for debugging
 
-# Upload Sheet for COD
-# flipcart_sheet =driver.find_element(By.XPATH, value="//button[@class='mat-focus-indicator schedule-btn mat-button mat-button-base']")
-# flipcart_sheet.click()
-
-# time.sleep(2)
-
-# # upl with excelsheet
-# upload_file_button = driver.find_element(By.XPATH, value='//button[text()=" Schedule Flight Via Excel "]')
-# upload_file_button.click()
-# time.sleep(2)
-
-# # select hub name
-# select_dropdown = driver.find_element(By.XPATH, value="//option[text()=' Flipkart -- Flipkart-00001 ']")
-
-# driver.execute_script("window.scrollBy({ top: 0, left: 300, behavior: 'smooth' });")
-
-# Edit_Hub = driver.find_element(By.XPATH, value="//div[@class='cdk-overlay-backdrop cdk-overlay-transparent-backdrop cdk-overlay-backdrop-showing']")
-# Edit_Hub.click()
-
-driver.quit()
-
+manual_flight = driver.find_element(By.XPATH, value="//span[text()='Manual Flight']")
+manual_flight.click()
 
