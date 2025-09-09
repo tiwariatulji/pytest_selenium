@@ -6,6 +6,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import Select
 import time
 from datetime import datetime, timedelta
 
@@ -47,6 +48,13 @@ New_Del = driver.find_element(By.XPATH, value= "//span[text()='COD']")
 New_Del.click()
 print("Clicked on COD")
 time.sleep(10)
+
+# Select dropdown value
+how_many = driver.find_element(By.XPATH, value="//select[@aria-label='Default select example']")
+how_many.send_keys("1")
+how_many.click()
+print("Selected 1 Delivery")
+time.sleep(5)
 
 hub_select = driver.find_element(By.XPATH, value="//select[@class='form-select']")
 hub_select.click()
