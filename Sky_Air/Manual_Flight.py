@@ -6,6 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 from datetime import date, timedelta
+import time
 
 
 @pytest.fixture
@@ -96,6 +97,13 @@ def test_schedule_flight(setup_driver):
         # assert "Schedule" in driver.page_source
         attach_screenshot(driver, "Flight Scheduled Successfully")
 
+        # Slot Selection
+        slot_selction = driver.find_element(By.XPATH, value="//button[@class='btn btn-dark slottime-btn br-15 f-12 fw-bold']")
+        slot_selction.click()
+        print("Clicked on Slot Selection")
+   
     except Exception as e:
         attach_screenshot(driver, "Failure Screenshot")
-        pytest.fail(f"Test failed due to: Date  Slot Is not Showing {e}")
+        pytest.fail(f"Test failed due to: Date Slot Picker Is not Clickable  {e}")
+
+
