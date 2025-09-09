@@ -6,6 +6,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import Select
 import time
 from datetime import datetime, timedelta, date
 
@@ -45,7 +46,7 @@ time.sleep(10)
 
 # Wait for the button to be clickable before clicking
 try:
-    New_Flight = WebDriverWait(driver, 20).until(
+    New_Flight = WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.XPATH, "(//button[@class='mat-focus-indicator schedule-btn mat-button mat-button-base'])[1]"))
     )
     New_Flight.click()
@@ -58,7 +59,7 @@ except Exception as e:
 
 # Wait for the manual flight button to be clickable
 try:
-    manual_flight = WebDriverWait(driver, 20).until(
+    manual_flight = WebDriverWait(driver, 5).until(
         EC.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Schedule Flight Manually']"))
     )
     manual_flight.click()
@@ -71,7 +72,7 @@ except Exception as e:
 
 # Search Skye Tunnel
 try:
-    search_tunnel = WebDriverWait(driver, 20).until(
+    search_tunnel = WebDriverWait(driver, 5).until(
         EC.element_to_be_clickable((By.XPATH, "//input[@placeholder=\"Search for tunnel by it's name/location\"]"))
     )
     search_tunnel.send_keys("FlipKart")
@@ -82,7 +83,7 @@ except Exception as e:
    
 # Select the Tunne and Create a Tunnel
 try:
-    Filpkart_tunnel = WebDriverWait(driver, 10).until(
+    Filpkart_tunnel = WebDriverWait(driver, 5).until(
         EC.element_to_be_clickable((By.XPATH, "(//div[@class='white-text f-14'][normalize-space()='Flipkart'])[1]"))
     )
     Filpkart_tunnel.click()
@@ -99,21 +100,8 @@ schedule_Delivery.click()
 print("Clicked on Schedule Delivery")
 time.sleep(5)
 
-# # select the Date
-# date_picker = driver.find_element(By.XPATH, value="(//input[@id='exampleFormControlInput1'])[1]")
-# date_picker.click()
-# print("Clicked on Date Picker")
-# time.sleep(2)
-
-# # Get today's date
-# today = date.today()
-# day = today.day
-# month = today.strftime("%B")  # e.g., September
-# year = today.year
-
-
 # Wait for date input and click to open calendar
-wait = WebDriverWait(driver, 10)
+wait = WebDriverWait(driver, 5)
 date_input = wait.until(EC.element_to_be_clickable((By.XPATH, "//input[@id='exampleFormControlInput1']")))
 date_input.click()
 # Get tomorrow's date
@@ -123,7 +111,18 @@ date_input.send_keys(formatted_date)
 print("Selected tomorrow's date:", formatted_date)
 time.sleep(5)
 
+how_many = driver.find_element(By.XPATH, value="//select[@aria-label='Default select example']")
+select_object = Select(how_many)
+select_object.select_by_visible_text("1")
+print("Selected 1 Delivery")
 
 
-
+try:
+    wait = WebDriverWait(driver, 10)
+    slot_select = wait.until(EC.element_to_be_clickable((By.XPATH, "(//button[@class='btn btn-dark time-btn br-15 f-12 fw-bold ng-star-inserted'])[2]")))
+    slot_select.click()
+    print("Selected 1st Slot for Flight")
+    time.sleep(5)
+except Exception as e:
+    print(f"Error selecting the 1st  slot: {e}")
 
