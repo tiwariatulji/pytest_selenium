@@ -101,7 +101,7 @@ print("Clicked on Schedule Delivery")
 time.sleep(5)
 
 # Wait for date input and click to open calendar
-wait = WebDriverWait(driver, 5)
+wait = WebDriverWait(driver, 2)
 date_input = wait.until(EC.element_to_be_clickable((By.XPATH, "//input[@id='exampleFormControlInput1']")))
 date_input.click()
 # Get tomorrow's date
@@ -110,15 +110,16 @@ formatted_date = f"{tomorrow.day:02d}-{tomorrow.month:02d}-{tomorrow.year}"
 date_input.send_keys(formatted_date)
 print("Selected tomorrow's date:", formatted_date)
 time.sleep(5)
-
+# Select Delivery Count
 how_many = driver.find_element(By.XPATH, value="//select[@aria-label='Default select example']")
 select_object = Select(how_many)
 select_object.select_by_visible_text("1")
 print("Selected 1 Delivery")
 
 
+# Select 1st Slot for Flight
 try:
-    wait = WebDriverWait(driver, 10)
+    wait = WebDriverWait(driver, 5)
     slot_select = wait.until(EC.element_to_be_clickable((By.XPATH, "(//button[@class='btn btn-dark time-btn br-15 f-12 fw-bold ng-star-inserted'])[2]")))
     slot_select.click()
     print("Selected 1st Slot for Flight")
@@ -126,3 +127,63 @@ try:
 except Exception as e:
     print(f"Error selecting the 1st  slot: {e}")
 
+# Sltot Selection
+try:
+    slot_selection = WebDriverWait(driver, 5).until(
+        EC.element_to_be_clickable((By.XPATH, "//button[@class='btn btn-dark slottime-btn br-15 f-12 fw-bold']"))
+    )
+    slot_selection.click()
+    print("Clicked on Slot Slection button")
+    time.sleep(5)
+
+except Exception as e:
+    print(f"Test failed due to: Slot seletion is not completed {e}")
+
+# TIme Slot Selection
+try:
+    #  Wait for the time field
+    time_input = WebDriverWait(driver, 5).until(
+        EC.element_to_be_clickable((By.XPATH, "//input[@type='time' and @formcontrolname='timeSlot']"))
+    )
+
+    #  set 22:00 dynamically
+    selected_time = datetime.strptime("22:00", "%H:%M").strftime("%H:%M")
+
+    #  Clear and enter time
+    # time_input.clear()
+    time_input.send_keys(selected_time)
+
+    #  Click slot button after time is selected
+    slot_selection = WebDriverWait(driver, 5).until(
+        EC.element_to_be_clickable((By.XPATH, "//input[@type='time' and @formcontrolname='timeSlot']"))
+    )
+    slot_selection.click()
+    time.sleep(5)
+
+    print(f" Time slot selected: {selected_time}")
+
+except Exception as e:
+    print(f" Error selecting the time slot: Slot could not be slectd {e}")
+
+
+# Slect show time Slot 
+select_time_slot = driver.find_element(By.XPATH, value="(//button[@class='btn btn-dark time-btn br-15 f-12 fw-bold ng-star-inserted'])[1]")
+select_time_slot.click()
+print("Clicked on Show Time Slot Button")
+
+# Next Button click
+next_button = WebDriverWait(driver, 5).until(
+        EC.element_to_be_clickable((By.XPATH, "//button[@class='btn primary-btn f-12 py-2']"))
+    )
+next_button.click()
+print("Clicked on Next Button after selecting time slot")
+time.sleep(10)
+
+# Client Organization Selection
+organization = WebDriverWait(driver, 5).until(
+        EC.element_to_be_clickable((By.XPATH, "//select[@class='form-select white-text-opacity black-medium ng-pristine ng-invalid ng-star-inserted ng-touched']"))
+    )
+select_object = Select(organization)
+select_object.select_by_visible_text("ECOM")
+print("Selected Organization")
+time.sleep(5)
