@@ -172,18 +172,166 @@ select_time_slot.click()
 print("Clicked on Show Time Slot Button")
 
 # Next Button click
-next_button = WebDriverWait(driver, 5).until(
+next_button_1 = WebDriverWait(driver, 5).until(
         EC.element_to_be_clickable((By.XPATH, "//button[@class='btn primary-btn f-12 py-2']"))
     )
-next_button.click()
+next_button_1.click()
 print("Clicked on Next Button after selecting time slot")
 time.sleep(10)
 
 # Client Organization Selection
-organization = WebDriverWait(driver, 5).until(
-        EC.element_to_be_clickable((By.XPATH, "//select[@class='form-select white-text-opacity black-medium ng-pristine ng-invalid ng-star-inserted ng-touched']"))
+try:
+    organization = WebDriverWait(driver, 15).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[contains(@class, 'form-select')]"))
+        )
+    select_object = Select(organization)
+    select_object.select_by_visible_text("ECOM")
+    print("Selected Organization")
+    time.sleep(5)
+except Exception as e:
+    print(f"Error selecting organization: {e}")
+
+# Client Name Selection
+try:
+    # Wait for at least 2 select elements with form-select class
+    WebDriverWait(driver, 5).until(
+        lambda driver: len(driver.find_elements(By.XPATH, "//select[contains(@class, 'form-select')]")) >= 2
     )
-select_object = Select(organization)
-select_object.select_by_visible_text("ECOM")
-print("Selected Organization")
+    # Get all select elements
+    selects = driver.find_elements(By.XPATH, "//select[contains(@class, 'form-select')]")
+    # The second select is for client name
+    Client_Name = selects[1]
+    select_object = Select(Client_Name)
+    # Wait for options to load
+    WebDriverWait(driver, 10).until(
+        lambda driver: len(select_object.options) > 1
+    )
+    select_object.select_by_visible_text("Abhinav Dhiman")
+    print("Selected Client Name")
+    time.sleep(5)
+except Exception as e:
+    print(f"Error selecting Client: client name not selected {e}")
+
+# TakeOff Pilot - Location 1
+try:
+    # Wait for at least 3 select elements with form-select class
+    WebDriverWait(driver, 5).until(
+        lambda driver: len(driver.find_elements(By.XPATH, "//select[contains(@class, 'form-select')]")) >= 3
+    )
+    # Get all select elements
+    selects = driver.find_elements(By.XPATH, "//select[contains(@class, 'form-select')]")
+    # The third select is for takeoff pilot
+    TakeOff_Pilot = selects[2]
+    select_object = Select(TakeOff_Pilot)
+    # Wait for options to load
+    WebDriverWait(driver, 5).until(
+        lambda driver: len(select_object.options) > 1
+    )
+    select_object.select_by_visible_text("Animesh Verma")
+    print("Selected TakeOff Pilot Animesh Verma")
+    time.sleep(5)
+except Exception as e:
+    print(f"Error selecting TakeOff Pilot: {e}")
+
+# # Landing Pilot - Location 2 
+try:
+    # Wait for at least 3 select elements with form-select class
+    WebDriverWait(driver, 5).until(
+        lambda driver: len(driver.find_elements(By.XPATH, "//select[contains(@class, 'form-select')]")) >= 4
+    )
+    # Get all select elements
+    selects = driver.find_elements(By.XPATH, "//select[contains(@class, 'form-select')]")
+    # The third select is for takeoff pilot
+    TakeOff_Pilot = selects[3]
+    select_object = Select(TakeOff_Pilot)
+    # Wait for options to load
+    WebDriverWait(driver, 5).until(
+        lambda driver: len(select_object.options) > 2
+    )
+    select_object.select_by_visible_text("Tarun Sadhya")
+    print("Selected Landing Pilot Tarun Sadhya")
+    time.sleep(5)
+except Exception as e:
+    print(f"Error selecting TakeOff Pilot: Take off Pilot Not selcted {e}")
+
+
+try:
+    # Wait for at least 3 select elements with form-select class
+    WebDriverWait(driver, 5).until(
+        lambda driver: len(driver.find_elements(By.XPATH, "//select[contains(@class, 'form-select')]")) >= 5
+    )
+    # Get all select elements
+    selects = driver.find_elements(By.XPATH, "//select[contains(@class, 'form-select')]")
+    # The third select is for takeoff pilot
+    TakeOff_Pilot = selects[4]
+    select_object = Select(TakeOff_Pilot)
+    # Wait for options to load
+    WebDriverWait(driver, 5).until(
+        lambda driver: len(select_object.options) > 2
+    )
+    select_object.select_by_visible_text("Hexo One")
+    print("Dron Slected Hexo One")
+    time.sleep(5)
+except Exception as e:
+    print(f"Error selecting Drone Selection: Drone not selcted {e}")
+
+except Exception as e:
+    print(f"Error selecting organization: {e}")
+
+# Submit the Clint Details Form
+Next_button = WebDriverWait(driver, 5).until(
+        EC.element_to_be_clickable((By.XPATH, "//button[@class='btn primary-btn f-12 py-2']"))
+    )
+Next_button.click()
+print("Clicked on Next Button after selecting time slot")
+time.sleep(10)
+
+# selcect time slot after client details
+time_select = driver.find_element(By.XPATH, value="//span[@class='time-active btn btn-dark']")
+time_select.click()
+print("Clicked on Time Slot After Client Details")
 time.sleep(5)
+
+# check box click
+try:
+    check_box = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.XPATH, "//input[contains(@class, 'checkbox-position')]"))
+    )
+    check_box.click()
+    print("Clicked on Check Box")
+except Exception as e:
+    print(f"Error finding or clicking the checkbox: {e}")
+
+# Proceed to Overview
+try:
+    proceed_overview = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.XPATH, "//button[contains(@class, 'btn primary-btn')]"))
+    )
+    proceed_overview.click()
+    print("Clicked on Proceed to Overview Button")
+    time.sleep(2)
+except Exception as e:
+    print(f"Error finding or clicking the proceed overview button: {e}")
+
+try:
+#  final Submit for Flight Booking
+   final_submit = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.XPATH, "//button[text()=' Confirm my order ']"))
+    )
+   final_submit.click()
+   print("Clicked on Final Submit Button Flight Booked Successfully")
+   time.sleep(15)
+except Exception as e:
+    print(f"Error finding or clicking the final submit button: {e}")
+
+# done for Now 
+try:    
+    done_for_now = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.XPATH, "//button[@class='btn btn-dark-border btn-hover btn-block f-12 py-2']"))
+    )
+    done_for_now.click()
+    print("Clicked on Done for Now Button")
+    time.sleep(15)   
+except Exception as e:
+    print(f"Error finding or clicking the done for now button: {e}")
+
