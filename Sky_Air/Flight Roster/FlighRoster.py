@@ -335,3 +335,15 @@ try:
 except Exception as e:
     print(f"Error finding or clicking the done for now button: {e}")
 
+# Return to Flight Roster Page
+
+return_flight_roster = driver.find_element(By.XPATH, value="//span[text()='Flight Roster']")
+return_flight_roster.click()
+time.sleep(10)
+print("Clicked on Flight Roster Page ")
+
+# Approve the Flight
+Approve_flight = driver.find_element(By.XPATH, value="(//button[@class='mat-focus-indicator approve-btn mat-button mat-button-base'])[1]")  
+Approve_flight.click()
+print("Clicked on Approve Flight Button")
+
