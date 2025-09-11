@@ -16,13 +16,20 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService  # नया इम्पोर्ट
 from selenium.webdriver.firefox.service import Service as FirefoxService  # नया इम्पोर्ट
+from selenium.webdriver.chrome.options import Options as ChromeOptions
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 
 def setup_browser(browser_name):
     if browser_name.lower() == 'chrome':
+        # Chrome options for allowing notifications
+        chrome_options = ChromeOptions()
+        prefs = {
+            "profile.default_content_setting_values.notifications": 1  # 1 = Allow, 2 = Block
+        }
+        chrome_options.add_experimental_option("prefs", prefs)
         # Chrome के लिए नया सिंटैक्स
-        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
     elif browser_name.lower() == 'firefox':
         # Firefox के लिए नया सिंटैक्स
         driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
