@@ -180,16 +180,4 @@ def test_flight_booking_flow(browser):
 
 
 
-try:
-    Skye_wlaker = wait.until(
-        EC.element_to_be_clickable((By.XPATH, "//div[contains(text(),'Mapping')]"))
-    )
-    Skye_wlaker.click()
-    print("Successfully clicked on SkyeWalker Mapping.")
-    take_screenshot(driver, "after_mapping_click")
-except Exception as e:
-    print(f"Failed to click on Mapping: {e}")
-    take_screenshot(driver, "mapping_click_failed")
-    raise
-finally:
-    driver.quit()
+
