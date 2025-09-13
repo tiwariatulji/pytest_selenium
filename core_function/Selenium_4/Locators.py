@@ -30,5 +30,9 @@ password.send_keys("secret_sauce")
 time.sleep(2)
 
 
+# // Find Product link for By.LINK_TEXT
+product_link
+
+
 
 driver.quit()

@@ -44,21 +44,21 @@ webdriver.get("https://www.saucedemo.com/") # Step 3: Navigate to the URL
 # webdriver.implicitly_wait(10) # Step 4: Wait for elements to load
 time.sleep(2) # Wait for 2 seconds to see the page load
 
-# # Enter your username
-# username = webdriver.find_element(By.XPATH, value="//input[@id='user-name']")
-# username.send_keys("standard_user")
-# time.sleep(2) # Wait for 2 seconds to see the page load
+# Enter your username
+username = webdriver.find_element(By.XPATH, value="//input[@id='user-name']")
+username.send_keys("standard_user")
+time.sleep(2) # Wait for 2 seconds to see the page loadcd
 
-# # Enter your password
-# password = webdriver.find_element(By.XPATH, value = "//input[@id='password']")
-# password.send_keys("secret_sauce")
-# time.sleep(2) # Wait for 2 seconds to see the page load
+# Enter your password
+password = webdriver.find_element(By.XPATH, value = "//input[@id='password']")
+password.send_keys("secret_sauce")
+time.sleep(2) # Wait for 2 seconds to see the page load
 
-# #  Login Button
+#  Login Button
 
-# login_button = webdriver.find_element(By.XPATH, value="//input[@name='login-button']")
-# login_button.click()
-# time.sleep(2) # Wait for 2 seconds to see the page load
+login_button = webdriver.find_element(By.XPATH, value="//input[@name='login-button']")
+login_button.click()
+time.sleep(2) # Wait for 2 seconds to see the page load
 
 #             #  after login add to cart button ( using contains method)
 # # contains method is used to find an element whose attribute contains a specific value.
@@ -87,12 +87,16 @@ time.sleep(2) # Wait for 2 seconds to see the page load
 # # print(add_text.text) # Print the text of the element
 
 # Finding duplicate vlaue using x path
-username_duplicate = webdriver.find_element(By.XPATH,value="//input[@id='user-name' and @name='user-name']")
-username_duplicate.send_keys("standard_user")
-time.sleep(2) # Wait for 2 seconds to see the page load
-print("Name is entered successfully")
+# username_duplicate = webdriver.find_element(By.XPATH,value="//input[@id='user-name' and @name='user-name']")
+# username_duplicate.send_keys("standard_user")
+# time.sleep(2) # Wait for 2 seconds to see the page load
+# print("Name is entered successfully")
 
 
+# Link Text
+
+product_link = webdriver.find_element(By.LINK_TEXT, value="Sauce Labs Backpack")
+product_link.click()
 
 time.sleep(15) # Wait for 2 seconds to see the page load
 
