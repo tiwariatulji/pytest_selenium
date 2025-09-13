@@ -96,7 +96,7 @@ try:
     print("Clicked on Hub 89 for Attendance")
     time.sleep(5)   
 except Exception as e:
-    print(f"Error clicking on Hub 80 for Attendance: {e}")
+    print(f"Error clicking on Hub 89 for Attendance: {e}")
     # raise Exception("Stopping execution due to failure in clicking Hub 80 for Attendance.")   
 
 
@@ -176,7 +176,7 @@ time.sleep(2)
 
 # Return Home Page
 driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-time.sleep(2)
+time
 
 
 

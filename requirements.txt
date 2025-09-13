@@ -1,4 +1,32 @@
-pytest
-selenium
-pytest-html
-webdriver-manager
+# Core testing framework
+pytest>=7.0.0
+pytest-html>=3.1.0
+pytest-xdist>=2.5.0
+
+# Selenium and web automation
+selenium>=4.10.0
+webdriver-manager>=3.8.0
+
+# Reporting and logging
+pytest-json-report>=1.5.0
+pytest-metadata>=2.0.0
+allure-pytest>=2.12.0
+
+# Utilities
+requests>=2.28.0
+Pillow>=9.0.0
+python-dateutil>=2.8.0
+
+# Development and debugging
+pytest-cov>=4.0.0
+pytest-mock>=3.10.0
+pytest-timeout>=2.1.0
+
+# Data handling
+pyyaml>=6.0
+openpyxl>=3.0.0
+pandas>=1.5.0
+
+# Optional: For better test reporting
+pytest-sugar>=0.9.6
+pytest-clarity>=1.0.1
