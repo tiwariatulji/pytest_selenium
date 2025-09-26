@@ -114,7 +114,7 @@ time.sleep(2)
 # Selected User Name for Attendance
 try:
     user_name = wait.until(
-        EC.element_to_be_clickable((By.XPATH, "(//a[@class='white-text'])[3]"))
+        EC.element_to_be_clickable((By.XPATH, "(//a[@class='white-text'])[5]"))
     )
     user_name.click()
     print("Clicked on User Name for Attendance")
