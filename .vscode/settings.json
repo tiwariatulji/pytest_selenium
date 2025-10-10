@@ -1,3 +1,8 @@
 {
-    "kiroAgent.configureMCP": "Disabled"
+    "kiroAgent.configureMCP": "Disabled",
+    "yaml.schemas": {
+        "file:///c%3A/Users/Inno/.vscode/extensions/atlassian.atlascode-4.0.2/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml",
+        "https://www.artillery.io/schema.json": []
+    },
+    "liveServer.settings.port": 5501
 }
