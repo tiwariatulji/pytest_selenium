@@ -1,0 +1,169 @@
+openapi: 3.0.3
+info:
+  title: NEW APP API
+  version: "1.0.0"
+  description: API documentation generated from Postman collection
+servers:
+  - url: https://lw16x0o62h.execute-api.eu-west-1.amazonaws.com/predev
+  - url: https://w4cicenxkf.execute-api.eu-west-1.amazonaws.com/predev
+paths:
+  /customer/customer-registration:
+    post:
+      summary: Customer Registration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Name: { type: string }
+                PhoneNumber: { type: string }
+                Email: { type: string }
+                FullAddress: { type: string }
+                City: { type: string }
+                State: { type: string }
+                Society: { type: string }
+                PinCode: { type: string }
+      responses:
+        "200":
+          description: Customer registered successfully
+
+  /customer/send-otp:
+    post:
+      summary: Send OTP
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                PhoneNumber: { type: string }
+      responses:
+        "200":
+          description: OTP sent successfully
+
+  /customer/verify-otp:
+    post:
+      summary: Verify OTP
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                PhoneNumber: { type: string }
+                Otp: { type: string }
+      responses:
+        "200":
+          description: OTP verified successfully
+
+  /societies/get-society-list:
+    get:
+      summary: Get Society List
+      parameters:
+        - in: query
+          name: filterType
+          schema: { type: string }
+        - in: query
+          name: state
+          schema: { type: string }
+        - in: query
+          name: city
+          schema: { type: string }
+      responses:
+        "200":
+          description: List of societies returned
+
+  /shipments/post-shipment-details:
+    post:
+      summary: Post Shipment Details
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                AssignedAWBNumbers: { type: string }
+                ConsigneeName: { type: string }
+                Address: { type: string }
+                OrderID: { type: string }
+                SocietyId: { type: string }
+                SkyeTunnelId: { type: string }
+                PhoneNumber: { type: string }
+                Email: { type: string }
+                Pincode: { type: string }
+                HubId: { type: string }
+                Remarks: { type: string }
+      responses:
+        "200":
+          description: Shipment details posted
+
+  /customer/request-flight:
+    post:
+      summary: Request Flight
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                AssignedAWBNumbers:
+                  type: array
+                  items: { type: string }
+                SlotTime:
+                  type: object
+                  properties:
+                    StartTime: { type: string, format: date-time }
+                    EndTime: { type: string, format: date-time }
+                CustomerId: { type: string }
+      responses:
+        "200":
+          description: Flight requested successfully
+
+  /society/get-society-shipments:
+    get:
+      summary: Get Society Shipments
+      parameters:
+        - in: query
+          name: societyId
+          schema: { type: string }
+        - in: query
+          name: limit
+          schema: { type: integer }
+        - in: query
+          name: lastKeyAWB
+          schema: { type: string }
+        - in: query
+          name: lastKeyTS
+          schema: { type: string, format: date-time }
+      responses:
+        "200":
+          description: List of shipments returned
+
+  /society/search-society-shipments:
+    get:
+      summary: Search Society Shipments
+      parameters:
+        - in: query
+          name: limit
+          schema: { type: integer }
+        - in: query
+          name: lastKeyAWB
+          schema: { type: string }
+        - in: query
+          name: lastKeyTS
+          schema: { type: string, format: date-time }
+        - in: query
+          name: SocietyId
+          schema: { type: string }
+        - in: query
+          name: search
+          schema: { type: string }
+      responses:
+        "200":
+          description: Filtered shipments returned
